@@ -41,7 +41,7 @@ THIRD_PARTY_APPS = [
     'django_countries',
 ]
 
-LOCAL_APPS =['apps.common', 'apps.profiles', 'apps.users']
+LOCAL_APPS =['apps.common', 'apps.profiles', 'apps.users', 'apps.posts']
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
