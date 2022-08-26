@@ -4,13 +4,17 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from django_countries.fields import CountryField
 
 from .managers import CustomUserManager
 
+from apps.common.models import TimeStampedUUIDModel
+
+
 
 class User(AbstractBaseUser, PermissionsMixin):
-    pkid = models.BigAutoField(primary_key=True, editable=False)
-    id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    id = models.BigAutoField(primary_key=True, editable=False)
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     username = models.CharField(verbose_name=_("Username"), max_length=255, unique=True)
     first_name = models.CharField(verbose_name=_("First Name"), max_length=50)
     last_name = models.CharField(verbose_name=_("Last Name"), max_length=50)
@@ -37,3 +41,31 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.username
+
+
+class Gender(models.TextChoices):
+    MALE = "Male", _("Male")
+    FEMALE = "Female", _("Female")
+    OTHER = "Other", _("Other")
+
+
+class Profile(TimeStampedUUIDModel):
+    user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
+    about_me = models.TextField(
+        verbose_name=_("About me"), default="say something about yourself"
+    )
+    profile_photo = models.ImageField(
+        verbose_name=_("Profile Photo")
+    )
+    gender = models.CharField(
+        verbose_name=_("Gender"),
+        choices=Gender.choices,
+        default=Gender.OTHER,
+        max_length=20,
+    )
+    country = CountryField(
+        verbose_name=_("Country"), default="GH", blank=False, null=False
+    )
+
+    def __str__(self):
+        return f"{self.user.username}'s profile"

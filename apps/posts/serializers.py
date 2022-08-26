@@ -6,6 +6,7 @@ class CategorySerializer(serializers.Serializer):
 
     class Meta:
         model = Category
+        exclude = ["updated_at", "id"]
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -29,9 +30,9 @@ class PostSerializer(serializers.ModelSerializer):
 class PostCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        exclude = ["updated_at", "pkid"]
+        exclude = ["updated_at", "id"]
 
 class PostSavesSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostSaves 
-        exclude = ["updated_at", "pkid"]       
+        exclude = ["updated_at", "id"]       

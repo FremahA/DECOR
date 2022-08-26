@@ -10,4 +10,7 @@ django-autoslug==1.9.8
 django-filter==21.1
 Pillow
 black==21.6b0
-isort==5.9.3
+isort==5.9.
+djoser==2.1.0
+djangorestframework-simplejwt==4.8.0
+pyJWT==2.1.0
