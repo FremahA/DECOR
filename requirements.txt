@@ -8,6 +8,7 @@ djangorestframework
 django-environ==0.7.0
 django-autoslug==1.9.8
 django-filter==21.1
+drf-writable-nested
 Pillow
 black==21.6b0
 isort==5.9.
