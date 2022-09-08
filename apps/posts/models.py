@@ -1,4 +1,3 @@
-from tabnanny import verbose
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
@@ -38,7 +37,7 @@ class Post(TimeStampedUUIDModel):
     website = models.URLField(verbose_name=_("Website"), null=True)
     is_published = models.BooleanField(verbose_name=_("Published Status"), default=False)
     saves = models.IntegerField(verbose_name=_("Post Saves"), default=0)
-    category = models.ManyToManyField(Category)
+    category = models.ManyToManyField(Category, related_name='postcategories')
 
     objects = models.Manager()
     published = PostPublishedManager()

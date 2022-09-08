@@ -5,13 +5,20 @@ class CategorySerializer(serializers.ModelSerializer):
     name = serializers.JSONField()
     class Meta:
         model = Category
+        fields = ["name", "id"] 
+
+
+class PostCategorySerializer(serializers.ModelSerializer):
+    name = serializers.JSONField()
+    class Meta:
+        model = Category
         fields = ["name"] 
 
 
 class PostSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField(read_only=True)
     photo = serializers.SerializerMethodField()
-    category = CategorySerializer(many=True, read_only=True)
+    category = PostCategorySerializer(many=True, read_only=True)
 
     class Meta:
         model = Post
@@ -29,8 +36,6 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class PostCreateSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(many=True)
-
     class Meta:
         model = Post
         fields = ["category", "user", "photo", "title", "slug", "description", "website", "is_published", "saves", "uuid", "saves"] 

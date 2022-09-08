@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 
 from .forms import CustomUserChangeForm, CustomUserCreationForm
-from .models import User, Profile
+from .models import User
 
 
 class UserAdmin(BaseUserAdmin):
@@ -76,10 +76,5 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ["email", "username", "first_name", "last_name"]
 
 
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ["uuid", "id", "user", "gender", "country"]
-    list_filter = ["gender", "country"]
-    list_display_links = ["uuid", "id", "user"]
 
 admin.site.register(User, UserAdmin)
-admin.site.register(Profile, ProfileAdmin)

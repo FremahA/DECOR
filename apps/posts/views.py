@@ -1,5 +1,4 @@
 import logging
-from unicodedata import category
 
 import django_filters
 from django.db.models import query
