@@ -29,7 +29,7 @@ class Category(TimeStampedUUIDModel):
 
 
 class Post(TimeStampedUUIDModel):
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='posts')
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='posts')
     photo = models.ImageField(verbose_name=_("Photo"), default="interior_sample.jpg", upload_to="media", null=True, blank=True)
     title = models.CharField(verbose_name=_("Post Title"), null=False, max_length=250)
     slug = AutoSlugField(populate_from="title", unique=True, always_update=True)

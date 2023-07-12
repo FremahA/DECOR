@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from .models import UserCategory
 from apps.posts.serializers import CategorySerializer
 
@@ -10,6 +11,7 @@ class UserCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = UserCategory
         fields = ["user", "category_following", "uuid", "id"]
+
     def get_user(self, obj):
         return obj.user.username
 
@@ -23,7 +25,6 @@ class UserCategoryCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserCategory
         fields = ["user", "category_following", "uuid", "id"]
-
 
     def update(self, instance, validated_data):
         category_following = validated_data.pop('category_following')

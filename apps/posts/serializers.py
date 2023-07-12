@@ -1,5 +1,7 @@
 from rest_framework import serializers
+
 from .models import Post, Category, PostSaves
+
 
 class CategorySerializer(serializers.ModelSerializer):
     name = serializers.JSONField()

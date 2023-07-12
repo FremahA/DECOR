@@ -106,7 +106,6 @@ def update_post_api_view(request, uuid):
         return Response(serializer.data)
 
 
-
 @permission_classes([permissions.IsAuthenticated])
 @api_view(["POST"])
 def create_post_api_view(request):
@@ -123,7 +122,6 @@ def create_post_api_view(request):
         return Response(serializer.data)
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 
 @api_view(["DELETE"])

@@ -10,5 +10,5 @@ router.register('', UserCategoryViewset, basename='user-categories')
 
 urlpatterns = [
     path('user-feed/', UserFeedAPIView.as_view(), name="user-feed"),
-    path("", include(router.urls))
+    path("", include(router.urls)),
 ]

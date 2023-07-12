@@ -7,6 +7,7 @@ from apps.common.models import TimeStampedUUIDModel
 
 User = get_user_model()
 
+
 class Gender(models.TextChoices):
     MALE = "Male", _("Male")
     FEMALE = "Female", _("Female")
@@ -14,13 +15,18 @@ class Gender(models.TextChoices):
 
 
 class Profile(TimeStampedUUIDModel):
-    user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        User,
+        related_name="profile",
+        on_delete=models.CASCADE,
+    )
     about_me = models.TextField(
-        verbose_name=_("About me"), default="say something about yourself"
+        verbose_name=_("About me"),
+        default="say something about yourself",
     )
     profile_photo = models.ImageField(
         verbose_name=_("Profile Photo"),
-        upload_to="media"
+        upload_to="media",
     )
     gender = models.CharField(
         verbose_name=_("Gender"),
@@ -29,7 +35,10 @@ class Profile(TimeStampedUUIDModel):
         max_length=20,
     )
     country = CountryField(
-        verbose_name=_("Country"), default="GH", blank=False, null=False
+        verbose_name=_("Country"),
+        default="GH",
+        blank=False,
+        null=False,
     )
 
     def __str__(self):

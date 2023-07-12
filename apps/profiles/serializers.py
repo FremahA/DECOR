@@ -1,11 +1,12 @@
 from django.contrib.auth import get_user_model
-from django_countries.serializer_fields import CountryField
 from rest_framework import fields, serializers
+from django_countries.serializer_fields import CountryField
+
 from .models import Profile
 
 User = get_user_model()
 
-# Create your tests here.
+
 class ProfileSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source="user.username")
     first_name = serializers.CharField(source="user.first_name")
@@ -14,7 +15,6 @@ class ProfileSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField(read_only=True)
     country = CountryField(name_only=True)
     
-
     class Meta:
         model = Profile
         fields = [
